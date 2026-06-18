@@ -68,6 +68,11 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+
+  Priniting-context:
+    runs-on: ubuntu-latest
+    steps:
       - name: printing context
         run: echo "${{ toJSON(github) }}"
 
