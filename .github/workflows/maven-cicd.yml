@@ -3,7 +3,7 @@ name: Maven Hello World CI/CD
 # Define triggers for code changes
 on:
   push:
-    branches: [ master ]
+    branches: [ master, test2 ]
   pull_request:
     branches: [ master ]
   workflow_dispatch:
