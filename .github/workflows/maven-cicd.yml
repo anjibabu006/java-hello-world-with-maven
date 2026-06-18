@@ -36,10 +36,10 @@ jobs:
       matrix:
         # Define the variables to combine
         os: [ubuntu-latest, windows-latest]
-        java-version: ['17', '21']
+        java-version: ['17', '21', '11']
         
         # Optional: Include a specific extra combination
-        include:
+        exclude:
           - os: ubuntu-latest
             java-version: '11'
             experimental: true
@@ -98,7 +98,9 @@ jobs:
     needs: [build-and-test]
     steps:
       - name: printing context
-        run: echo "${{ toJSON(github) }}"
+        run: |
+              echo "${{ vars.Sample }}"
+              echo "${{ toJSON(github) }}"
 
 
 
