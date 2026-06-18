@@ -17,6 +17,7 @@ env:
   REGISTRY: ghcr.io
   # Converts the repository name to lowercase to prevent Docker naming errors
   IMAGE_NAME: ${{ github.repository }}
+  Sample11: ${{ vars.SAMPLE }}
   
 jobs:
   # CONTINUOUS INTEGRATION (CI)
@@ -99,7 +100,7 @@ jobs:
     steps:
       - name: printing context
         run: |
-              echo "${{ vars.SAMPLE }}"
+              echo "${{ vars.Sample11 }}"
               echo "${{ toJSON(github) }}"
 
 
