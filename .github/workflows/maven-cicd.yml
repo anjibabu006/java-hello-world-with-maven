@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     # CRITICAL: This links the job to your protected environment rules
     environment: production
+    steps:
+    - run: echo "Deploying to production server now that it is approved!"
   build-and-test:
     runs-on: ubuntu-latest
     needs: Approval
