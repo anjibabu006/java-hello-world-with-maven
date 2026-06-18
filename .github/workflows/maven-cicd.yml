@@ -32,9 +32,7 @@ jobs:
 
     strategy:
       # If one combination fails, don't cancel the others automatically
-      fail-fast: false 
-    continue-on-error: true
-    
+      fail-fast: false  
       matrix:
         # Define the variables to combine
         os: [ubuntu-latest, windows-latest]
@@ -45,6 +43,8 @@ jobs:
           - os: ubuntu-latest
             java-version: '11'
             experimental: true
+    continue-on-error: true
+    
     steps:
       - name: Check out the source code
         uses: actions/checkout@v4
