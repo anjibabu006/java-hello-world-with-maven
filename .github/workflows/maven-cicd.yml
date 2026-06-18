@@ -22,6 +22,7 @@ jobs:
   # CONTINUOUS INTEGRATION (CI)
   build-and-test:
     runs-on: ubuntu-latest
+    needs: 
     steps:
       - name: Check out the source code
         uses: actions/checkout@v4
@@ -72,6 +73,7 @@ jobs:
 
   Priniting-context:
     runs-on: ubuntu-latest
+    needs: [build-and-test]
     steps:
       - name: printing context
         run: echo "${{ toJSON(github) }}"
