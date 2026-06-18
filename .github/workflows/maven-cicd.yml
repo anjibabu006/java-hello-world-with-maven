@@ -27,16 +27,31 @@ jobs:
     steps:
     - run: echo "Deploying to production server now that it is approved!"
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: Approval
+
+    strategy:
+      # If one combination fails, don't cancel the others automatically
+      fail-fast: false 
+      
+      matrix:
+        # Define the variables to combine
+        os: [ubuntu-latest, windows-latest]
+        java-version: ['17', '21']
+        
+        # Optional: Include a specific extra combination
+        include:
+          - os: ubuntu-latest
+            java-version: '11'
+            experimental: true
     steps:
       - name: Check out the source code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
           cache: 'maven' # Automatically caches .m2 dependencies to save time
 
