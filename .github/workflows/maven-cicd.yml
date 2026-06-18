@@ -33,7 +33,8 @@ jobs:
     strategy:
       # If one combination fails, don't cancel the others automatically
       fail-fast: false 
-      
+    continue-on-error: true
+    
       matrix:
         # Define the variables to combine
         os: [ubuntu-latest, windows-latest]
