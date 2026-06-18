@@ -1,0 +1,37 @@
+name: Maven Hello World CI/CD
+
+# Define triggers for code changes
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # CONTINUOUS INTEGRATION (CI)
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the source code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven' # Automatically caches .m2 dependencies to save time
+
+      - name: Compile and Run Tests
+        run: mvn clean test
+
+      - name: Package Application
+        run: mvn package -DskipTests # Packages code into a target/ target JAR
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-world-jar
+          path: target/*.jar
+
+ 
