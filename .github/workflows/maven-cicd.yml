@@ -7,6 +7,16 @@ on:
   pull_request:
     branches: [ master ]
   workflow_dispatch:
+
+# Grant permissions to allow pushing images to GitHub Container Registry (GHCR)
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  # Converts the repository name to lowercase to prevent Docker naming errors
+  IMAGE_NAME: ${{ github.repository }}
   
 jobs:
   # CONTINUOUS INTEGRATION (CI)
@@ -34,5 +44,13 @@ jobs:
         with:
           name: hello-world-jar
           path: target/*.jar
+      # --- NEW DOCKER STEPS START HERE ---
+      
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
  
