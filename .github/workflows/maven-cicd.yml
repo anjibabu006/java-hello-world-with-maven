@@ -36,7 +36,7 @@ jobs:
       fail-fast: false  
       matrix:
         # Define the variables to combine
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, self-hosted, windows-latest]
         java-version: ['17', '21', '11']
         
         # Optional: Include a specific extra combination
