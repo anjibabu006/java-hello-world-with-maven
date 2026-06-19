@@ -22,7 +22,7 @@ env:
 jobs:
   # CONTINUOUS INTEGRATION (CI)
   Approval:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     # CRITICAL: This links the job to your protected environment rules
     environment: production
     steps:
@@ -95,7 +95,7 @@ jobs:
 
 
   Priniting-context:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [build-and-test]
     steps:
       - name: printing context
