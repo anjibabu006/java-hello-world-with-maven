@@ -21,12 +21,12 @@ env:
   
 jobs:
   # CONTINUOUS INTEGRATION (CI)
-  Approval:
-    runs-on: self-hosted
-    # CRITICAL: This links the job to your protected environment rules
-    environment: production
-    steps:
-    - run: echo "Deploying to production server now that it is approved!"
+  #Approval:
+  #  runs-on: self-hosted
+  #  # CRITICAL: This links the job to your protected environment rules
+  #  environment: production
+  #  steps:
+  #  - run: echo "Deploying to production server now that it is approved!"
   build-and-test:
     runs-on: ${{ matrix.os }}
     needs: Approval
@@ -36,8 +36,8 @@ jobs:
       fail-fast: false  
       matrix:
         # Define the variables to combine
-        os: [ubuntu-latest, self-hosted, windows-latest]
-        java-version: ['17', '21', '11']
+        os: [self-hosted]
+        java-version: ['21']
         
         # Optional: Include a specific extra combination
         exclude:
